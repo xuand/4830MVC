@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/my.css" />
+</head>
+<body ng-controller="TodoController as todo">
+	<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 bg-success">
+        <!-- <p class="title"><em>{{todo.todothings.length}}</em> things need to do</p> -->
+        <div class="text-center">
+        <button class="btn btn-warning" type="button">Things  <span class="badge">{{todo.todothings.length}}</span></button>
+    </div>
+        <div ng-repeat="todothing in todo.todothings" >
+           <input type="checkbox" class="glyphicon glyphicon-ok" ng-click="todo.finish(todothing)">
+           <span ng-hide="todo.isFi(todothing)" ng-click="todo.finish(todothing)" >{{todothing.content}}</span>
+           <del ng-show="todo.isFi(todothing)" ng-click="todo.finish(todothing)" class="grey-fonts">{{todothing.content}}</del>
+           <span class="glyphicon glyphicon-remove pull-right" ng-click="todo.compelete(todothing)"></span>
+        </div>           
+         <p>{{todo.newthing}}</p>
+     </div>
+ </div>
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+        <form name="submitThing" ng-submit="todo.addthing(todo.todothings)">
+            <div class="form-group">
+            <textarea class="form-control" ng-model="todo.newthing" placeholder="What's in your mind?"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4">
+            <input class="btn btn-primary btn-block" type="submit" value="Submit" />
+        </div>
+        </form> 
+        <div class="col-xs-4 col-xs-offset-4">
+        <form name="clearThing" ng-submit="todo.clearthing()">
+            <input class="btn btn-danger pull-left btn-block" type="submit" value="Clear All" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
